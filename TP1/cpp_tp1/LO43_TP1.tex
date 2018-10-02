@@ -1,0 +1,266 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage{latexsym}
+\usepackage[french]{babel}
+
+%\usepackage[utf8x]{inputenc}
+%\usepackage{listings}
+
+\frenchspacing
+
+
+
+\begin{document}
+
+
+%\renewcommand{\labelitemi}{$\bullet$}
+%\renewcommand{\labelitemii}{$\bullet$}
+
+\begin{center}
+\bfseries\Huge{LO43 - TP1}
+\end{center}
+
+
+\section{Introduction}
+
+\subsection{Quelques informations sur le langage C++}
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+%%%%% Header files
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+	
+	~\\
+		\bfseries
+	Fichier d'ent\^ete (header files)
+		\normalsize
+		\mdseries
+	\begin{itemize}
+		\item Extension : *.h, *.hpp %(le dernier est pr\'ef\'erable)
+		\item D\'eclaration: des class (attributes, m\'ethodes), des noms de fonctions, noms de variables, noms de constantes
+		\item Exemple de fichier d'ent\^ete (calculatrice.h): \\
+			%		#define PI 3.14
+			\begin{verbatim}
+			class calculatrice {
+			  public:
+			    calculatrice() {};
+			    ~calculatrice() {};
+			    int addition(int a, int b);
+			}
+			\end{verbatim}
+		\item Le fichier peut \'egalement contenir des d\'efinitions de m\'ethodes et de fonctions (recommand\'e seulement pour petite fonction/m\'ethodes)
+		\item Les m\'ethodes de la classe d\'efinies dans le corps de la classe sont les m\'ethodes \itshape{inline}. 
+	\end{itemize}
+	
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+%%%%% Source files
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+	
+	~\\
+		\bfseries
+	Fichier source (source files)
+		\normalsize
+		\mdseries
+	\begin{itemize} 
+		\item Extension : *.c *.cc, *.cpp %(le dernier est pr\'ef\'erable)
+		\item D\'efinir les methodes, fonctions dont le nom est d\'efini dans le fichier d'ent\^ete
+		\item Contiennent des r\'ef\'erences aux fichiers d'ent\^ete : \begin{verbatim}#include "..." \end{verbatim}
+		\item Exemple de fichier source (calculator.cc):
+			\begin{verbatim}
+			#include "calculatrice.h"
+			
+			int calculatrice::addition(int a, int b) {
+			  return a+b;
+			}			
+			\end{verbatim}	
+		\item Contiennent une fonction main(...), dont le programme d\'ebute son exploitation (un fichier pour le programme). 
+	\end{itemize}
+	
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+%%%%% Compilation and linking 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+
+	~\\	
+			\bfseries
+	La compilation et le linkage
+			\normalsize
+			\mdseries
+		\begin{itemize} 
+			\item La compilation: le compilateur compile chaque fichier source (.c, .cc .cpp), c'est-\`a-dire qu'il cr\'ee un fichier binaire (.o) par fichier source. Exemple: % (except\'e pour le fichier contenant la fonction main.) 
+				\begin{verbatim}
+				g++ -c fichier.cpp -I/chemin
+				\end{verbatim}
+				%gcc -c fichier.cpp -I/chemin
+				\begin{itemize}
+					\item fichier.cpp - fichier source fichier.cc, qui sera compil\'e (cr\'ee fichier fichier.o)
+					\item -L/chemin - ajouter le répertoire /chemin à la liste des répertoires où aller chercher les fishier d'ent\^ete
+					%\item -I/chemin - chemin ou sont les fichiers d'ent\^ete inclus dans fichier.cc ( si les fichiers d'ent\^ete ce trouve dans le m\^eme dossier que fichier.cc, on ne met pas le chemin )
+			\end{itemize}
+			~\\
+			\item Le linkage: Cette phase, constitue la phase finale pour obtenir un ex\'ecutable. Le compilateur agrège chaque fichier .o avec les \'eventuels fichiers binaires des librairies qui sont utilis\'ees (fichiers .a et .so sous linux, fichiers .dll et .lib sous windows). Exemple:
+			\begin{verbatim}
+				g++ -o programme programme.o binaires1.o . . . binairesN.o -L/chemin -lsunmath
+			\end{verbatim}
+				% gcc -o programme programme.o binaires1.o . . . binairesN.o -L/chemin -lsunmath
+			
+			\begin{itemize}
+				\item programme.o - fichier binaire de fichier source programme.cc contiennent fonction main(...)
+				\item binaires1.o - fichier binaire de fichier source binaires1.cc
+				%\item -L. - chemin ou sont les librairies utilis\'e pour le linkage ( si les librairies ce trouve dans standard 	 dossier que fichier.cc, on ne met pas le chemin )
+				\item -L/chemin - ajouter le répertoire /chemin à la liste des répertoires où aller chercher les librairies
+				\item -lsunmath - librairie sunmath
+			\end{itemize}
+		\end{itemize}
+		
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+%%%%% Makefile
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+		
+			~\\	
+			\bfseries
+	Makefile
+			\normalsize
+			\mdseries
+
+	Makefile est un fichier pour le programme make. Le programme make analyse un fichier Makefile et des r\`egles sur cette base que les fichiers source doivent compiler. Il permettre de gagner de temps dans la cr\'eation du programme, car \`a la suite de modifications dans le fichier source uniquement les fichiers qui sont d\'ependant de ce fichier sont compil\'e.
+	
+	Makefile se compose d'un ensemble de r\`egles. R\`egles consistent g\'en\'eralement de cible, des r\`egles de d\'ependance et des commandes. On peux aussi d\'efinir de variable utilises dans le r\`egles. Pour pour ex\'ecuter Makefile tape "make".
+	
+%	sk?ada sie; z zestawu regu?. Regu?y sk?adaja; sie; zazwyczaj z celu (nazwy celu i zazwyczaj zarazem nazwy pliku jaki zostanie wygenerowany za pomoca; danej regu?y), zalez.nos'ci (moga; to byc' nazwy istnieja;cych plików jak i nazwy innych regu?) oraz zestawu komend które maja; byc' wykonane przy danej regule (zazwyczaj tworza; one plik celu). Ponadto w Makefile moz.na deklarowac' zmienne i sie; nimi pos?ugiwac'. Do wartos'ci zmiennych odwo?ujemy sie; poprzedzaja;c je znakiem $ i biora;c nazwe; w nawiasy okra;g?e (nawiasy pomija sie; przy zmiennych jednoznakowych). 
+	
+	%http://www.fuw.edu.pl/~jnareb/zajecia/make.html
+	
+	
+	
+	%# Le variable qui contient chemins ou se trouvent les fichiers a inclure
+	%INCLUDES= -I/usr/include
+	
+	Exemple :
+	\begin{verbatim}
+	# C'est un commentaire
+	
+	# Le variable qui indique le compilateur
+	CXX=g++
+
+	# Le variable avec les répertoires ou ce trouve fichiers d'entetes
+	INCLUDE_DIRS=-I/usr/include
+
+	# Le variable avec les répertoires ou ce trouve librairies
+	LIB_DIRS=-L/usr/lib
+
+	# Le variable avec les options de compilation	CXXFLAGS= $(INCLUDE_DIRS) -c 
+
+	# Le variable avec les options de linkage	LDFLAGS= $(LIB_DIRS)
+		
+	# Le variable qui contient les librairies avec lesquelles on va 
+	# effectue l'edition de liens
+	LIBS=-lm
+
+	# Le cible:
+	# <nome_de_cible>: <dependance> 
+	#   <commandes>
+	
+	# Le cible qui va cree le executable
+	tp: programme.o func1.o func2.o
+		$(CXX) $(LIB_DIRS) -o main programme.o func1.o func2.o $(LIBS)
+	
+	# Le cible qui supprime tout les fichiers interm\'ediaires.
+	clean:
+  rm -f func1.o func2.o programme
+	
+	
+	# Les regles de dependance 
+	# <nome_de_regle>: <dependance>    
+	#   <commandes>
+	programme.o: programme.c func3.h
+    $(CXX) $(CXXFLAGS) programme.c
+    
+  func1.o: func1.c
+    $(CXX) $(CXXFLAGS) func1.c
+  
+  func2.o: func2.c
+    $(CXX) $(CXXFLAGS) func2.c
+	\end{verbatim}
+		
+	
+	
+	\subsection{Les Resources}
+		\begin{itemize}
+			\item C++ FAQ LITE : \underline{http://jlecomte.ifrance.com/c++/c++-faq-lite/index-fr.html}
+			\item Introduction \`a Makefile : \underline{http://gl.developpez.com/tutoriel/outil/makefile/}
+			\item gnu 'make' : \underline{http://www.gnu.org/software/autoconf/manual/make/index.html}
+			\item Manuel de gcc : \itshape{man gcc}
+		\end{itemize}
+	
+
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+%%%%% 
+%%%%% Excercises
+%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+	
+
+\section{Excercises}
+
+\subsection{Helloworld}
+~\\
+				1) \'Ecrire un programme qui lance une m\'ethode \itshape{affiche} de classe \itshape{HelloW} affichant sur un \'ecran "HelloW - hello world !".\\
+					~\\
+					HelloW.hpp : d\'eclaration de la classe \itshape{HelloW}\\
+					HelloW.cpp : impl\'ementation de la classe \itshape{HelloW}\\
+					ClientHW.cpp : programme de test (contient la m\'ethode main)\\
+					~\\
+					Compilation et linkage avec gcc\\
+					~\\
+%		\begin{enumerate}
+%			\item \'Ecrire un programme qui lance une m\'ethode de classe HelloW affichant sur un \'ecran <<HelloW - hello world !>>.
+%				\begin{itemize} %{labelitemi}{$\bullet$}
+%					\item Fichier d'ent\^ete avec d\'eclaration de la classe %plik naglowkowy .h ( deklaracja klasy )
+%					\item Fichier source avec impl\'ementation de la m\'ethodes de la classe %plik zrodlowy .cc ( definicja klasy } 
+%					\item Fichier source avec m\'ethode main %plik z main  .cc 
+%					\item Compilation et linkage avec gcc  % kompilacja przy uzyciu gcc 
+%				\end{itemize}
+%			\item 
+				2) Ajoute les classes \itshape{HelloA}, \itshape{HelloB} avec les methodes \itshape{affiche} qui affiche sur un ecran "HelloA - hello world!" et "HelloB - hello world!".\\
+				~\\
+				Pour chaque classe une fichier d'ent\^ete et fichier source.\\
+				Compilation avec un fichier makefile.\\
+			
+%			\item Ajoute les classes HelloA, HelloB avec les methodes qui affiche sur un ecran <<HelloA - hello world!>> et <<HelloB - hello world!>>.
+%				\begin{itemize}
+%					\item Pour chaque classe une fichier d'ent\^ete et fichier source.
+%					\item Compilation avec un fichier makefile
+%				\end{itemize}
+%			\item 
+%		\end{enumerate}
+		
+\subsection{Type Abstrait Vecteur}
+~\\
+			L'objet du TP est de construire le type vecteur et de le tester avec un programme client.\\
+~\\			
+			1) Compilation: rapatrier dans votre r\'epertoire de travail une copie du dossier cpp\_tp1 qui contient
+un squelette de programme et un makefile:\\
+~\\
+	Vecteur.h : interface du TAD\\ % TAD = Type Abstraite de Donne
+	Vecteur.cc : impl\'ementation\\
+	Client.cc : programme de test du TAD (contient le main)\\ 
+	Makefile : permet la compilation et l'\'edition de liens du programme\\
+	Apr\`es avoir copier les fichiers, tester le compilation en utilisant Makefile.\\
+~\\	
+	2) Construction du TAD\\ 
+~\\	
+Compl\'eter les fichiers Vecteur.h et Vecteur.cc avec les op\'erateurs demand\'es.\\
+Proc\'eder par \'etapes en v\'erifiant la syntaxe (compilation) au fur et a mesure.\\
+Pour les diff\'erents constructeurs/destructeur on d\'efinira des compteurs statiques
+pour calculer le nombre de passages dans chacun d'eux.\\
+~\\
+3) Programme client\\
+Compl\'eter le programme client avec des exemples d'utilisation du TAD
+			
+			
+
+\end{document}
+
+
