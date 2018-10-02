@@ -9,6 +9,7 @@ class liste {
       // Champs prives
       private:
       maillon *_tete, *_fin;
+      int nbMaillon=10;
 
       // Forme canonique de Coplien
       public:
@@ -37,6 +38,13 @@ class liste {
 
       // Autres methodes et operateurs
       // ...
+
+      // getters
+      int getNbMaillon();
+
+      // setters
+      void setNbMaillon(int nb);
+
 };        
 
 #endif

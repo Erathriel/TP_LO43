@@ -16,6 +16,8 @@ int main(int argc, char *argv[])
   T t2;
   maillon m1;
   liste l;
+  //l.setNbMaillon(9); //--test
+  //cout << l.getNbMaillon(); //--test
   l.affiche();
 }
 
