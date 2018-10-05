@@ -5,11 +5,12 @@
 #define __LISTE_H
 
 // Classe liste
+//template <class T>
 class liste {
       // Champs prives
       private:
       maillon *_tete, *_fin;
-      int nbMaillon=10;
+      int nbMaillon;
 
       // Forme canonique de Coplien
       public:
@@ -39,11 +40,18 @@ class liste {
       // Autres methodes et operateurs
       // ...
 
+      // operateur []
+      liste& operator[]( int i);
+
       // getters
       int getNbMaillon();
+      maillon* getTete();
+      maillon* getFin();
 
       // setters
       void setNbMaillon(int nb);
+      void setTete(maillon* tete);
+      void setFin(maillon* fin);
 
 };        
 

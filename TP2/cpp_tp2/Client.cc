@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
   T t1;
   T t2;
   maillon m1;
-  liste l;
+  liste l = *new liste();
   //l.setNbMaillon(9); //--test
   //cout << l.getNbMaillon(); //--test
   l.affiche();

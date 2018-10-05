@@ -27,6 +27,14 @@ class maillon {
 
       // Autres methodes et operateurs
       // ...
+
+      // getters
+      T getData();
+      maillon* getSuivant();
+
+      // setters
+      void setData(T data);
+      void setSuivant(maillon* m);
 };
 
 #endif
