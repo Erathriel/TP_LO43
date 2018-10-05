@@ -3,23 +3,28 @@
 
 
 // constructeur
-liste::liste(){}
-liste::liste(const liste<T>& l){
+template <class T>
+liste<T>::liste(){}
+template <class T>
+liste<T>::liste(const liste<T>& l){
 	this->_tete=l._tete;
 	this->_fin=l._fin;
 	this->nbMaillon=l.nbMaillon;
 }
 
 // destructeur
-liste::~liste(){}
+template <class T>
+liste<T>::~liste(){}
 
 // affectation liste
-liste<T>& liste::operator=(const liste<T>& l){
+template <class T>
+liste<T>& liste<T>::operator=(const liste<T>& l){
 
 }
 
 // ajout maillon
-liste<T>& liste::operator+(const T& t){
+template <class T>
+liste<T>& liste<T>::operator+(const T& t){
 	if (nbMaillon==0)
 	{
 		nbMaillon++;
@@ -27,23 +32,28 @@ liste<T>& liste::operator+(const T& t){
 	}
 	return *this;
 }
-liste<T>& liste::operator+(const maillon<T>& m){
+template <class T>
+liste<T>& liste<T>::operator+(const maillon<T>& m){
 	
 }
-liste<T>& liste::operator+(const liste<T>& l){
+template <class T>
+liste<T>& liste<T>::operator+(const liste<T>& l){
 	
 }
 
 // suppression maillon
-liste<T>& liste::operator-(const T&t){
+template <class T>
+liste<T>& liste<T>::operator-(const T&t){
 
 }
-liste<T>& liste::operator-(int i){
+template <class T>
+liste<T>& liste<T>::operator-(int i){
 
 }
 
 // operateur []
-liste<T>& liste::operator[](int i){
+template <class T>
+liste<T>& liste<T>::operator[](int i){
 	if (i>=0 && i <this->nbMaillon)
 	{
 		return this[i];
@@ -51,15 +61,18 @@ liste<T>& liste::operator[](int i){
 }
 
 // suppression
-void liste::supprime_tete(){
+template <class T>
+void liste<T>::supprime_tete(){
 
 }
-void liste::supprime(){
+template <class T>
+void liste<T>::supprime(){
 
 }
 
 // affichage des elements de la liste
-void liste::affiche() const{
+template <class T>
+void liste<T>::affiche() const{
 	/* //--test
 	for (maillon m : this)
 	{
@@ -81,23 +94,29 @@ void liste::affiche() const{
 }
 
 // getters
-int liste::getNbMaillon(){
+template <class T>
+int liste<T>::getNbMaillon(){
 	return nbMaillon;
 }
-maillon<T>* liste::getTete(){
+template <class T>
+maillon<T>* liste<T>::getTete(){
 	return _tete;
 }
-maillon<T>* liste::getFin(){
+template <class T>
+maillon<T>* liste<T>::getFin(){
 	return _fin;
 }
 
 // setters
-void liste::setNbMaillon(int nb){
+template <class T>
+void liste<T>::setNbMaillon(int nb){
 	nbMaillon = nb;
 }
-void liste::setTete(maillon<T>* tete){
+template <class T>
+void liste<T>::setTete(maillon<T>* tete){
 	_tete=tete;
 }
-void liste::setFin(maillon<T>* fin){
+template <class T>
+void liste<T>::setFin(maillon<T>* fin){
 	_fin=fin;
 }

@@ -4,6 +4,7 @@
 #ifndef __LISTE_H
 #define __LISTE_H
 
+
 // Classe liste
 template <class T>
 class liste {

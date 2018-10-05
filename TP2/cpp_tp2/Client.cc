@@ -12,8 +12,8 @@ int main(int argc, char *argv[])
   cout << " LO43 - TP2 - Exo 1" << endl << endl;
 
   // Test de Liste et ListeTemplate
-  maillon<int> m1;
-  liste<int> l = new liste();
+  //maillon<int> m1;
+  //liste<int> l;
   //l.setNbMaillon(9); //--test
   //cout << l.getNbMaillon(); //--test
   //l.affiche();
