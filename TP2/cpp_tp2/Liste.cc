@@ -1,7 +1,7 @@
 #include "Liste.h"
 #include <string>
 
-
+template class liste<int>;
 // constructeur
 template <class T>
 liste<T>::liste(){}
@@ -25,10 +25,12 @@ liste<T>& liste<T>::operator=(const liste<T>& l){
 // ajout maillon
 template <class T>
 liste<T>& liste<T>::operator+(const T& t){
+	maillon<int> m;
 	if (nbMaillon==0)
 	{
 		nbMaillon++;
-		this->_tete=t;
+		m.setData(t);
+		this->_tete=m;
 	}
 	return *this;
 }

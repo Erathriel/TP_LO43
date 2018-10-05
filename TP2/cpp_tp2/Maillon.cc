@@ -1,5 +1,6 @@
 #include "Maillon.h"
 
+template class maillon<int>;
 // constructeur
 template <class T>
 maillon<T>::maillon(){}

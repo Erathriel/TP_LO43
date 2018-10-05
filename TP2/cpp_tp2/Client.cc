@@ -17,6 +17,16 @@ int main(int argc, char *argv[])
   //l.setNbMaillon(9); //--test
   //cout << l.getNbMaillon(); //--test
   //l.affiche();
+
+  liste<int> l;
+  maillon<int> m;
+  l=l+1;
+  int i = l.getTete()->getData();
+  m.setData(1);
+  cout << m.getData();
+  cout << "\n";
+  cout << i;
+  cout << "\n";
 }
 
 
