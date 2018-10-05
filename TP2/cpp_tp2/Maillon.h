@@ -19,7 +19,7 @@ class maillon {
         maillon();
         maillon(const maillon<T>& m);
         ~maillon();
-        maillon<T>& operator=(const maillon<T> m);
+        maillon<T>& operator=(const maillon<T>& m);
 
       // Autres methodes et operateurs
       // ...

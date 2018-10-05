@@ -15,7 +15,7 @@ maillon<T>::~maillon(){}
 
 // affectation maillon
 template <class T>
-maillon<T>& maillon::operator=(const maillon<T>& m){
+maillon<T>& maillon<T>::operator=(const maillon<T>& m){
 
 }
 
