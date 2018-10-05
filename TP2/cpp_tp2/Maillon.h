@@ -6,35 +6,31 @@
 
 using namespace std;
 
-// Classe T
-class T {
-};
-
 // Classe maillon
-//template <class T>
+template <class T>
 class maillon {
       // Champs prives
       private:
         T _data ;
-        maillon *_suivant ;
+        maillon<T>* _suivant ;
 
       // Forme canonique de Coplien
       public:
         maillon();
-        maillon(const maillon& m);
+        maillon(const maillon<T>& m);
         ~maillon();
-        maillon& operator=(const maillon& m);
+        maillon<T>& operator=(const maillon<T> m);
 
       // Autres methodes et operateurs
       // ...
 
       // getters
       T getData();
-      maillon* getSuivant();
+      maillon<T>* getSuivant();
 
       // setters
       void setData(T data);
-      void setSuivant(maillon* m);
+      void setSuivant(maillon<T>* m);
 };
 
 #endif

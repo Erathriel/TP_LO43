@@ -5,28 +5,28 @@
 #define __LISTE_H
 
 // Classe liste
-//template <class T>
+template <class T>
 class liste {
       // Champs prives
       private:
-      maillon *_tete, *_fin;
+      maillon<T> *_tete, *_fin;
       int nbMaillon;
 
       // Forme canonique de Coplien
       public:
         liste() ;
-        liste(const liste& l) ;
+        liste(const liste<T>& l) ;
         ~liste() ;
-        liste& operator=(const liste& l) ;
+        liste<T>& operator=(const liste<T>& l) ;
 
       // Ajout de maillons
-         liste& operator+ (const T& t) ;
-         liste& operator+ (const maillon& m) ;
-         liste& operator+ (const liste& l) ;
+         liste<T>& operator+ (const T& t) ;
+         liste<T>& operator+ (const maillon<T>& m) ;
+         liste<T>& operator+ (const liste<T>& l) ;
 
       // Suppression de maillons
-         liste& operator- (const T&t ) ; // suppression de la premiere occurence de T
-         liste& operator- (int i) ; // suppression du maillon d'indice donne
+         liste<T>& operator- (const T&t ) ; // suppression de la premiere occurence de T
+         liste<T>& operator- (int i) ; // suppression du maillon d'indice donne
 
       // Suppression 
          void supprime_tete() ; // supprime la tete de la liste
@@ -41,17 +41,17 @@ class liste {
       // ...
 
       // operateur []
-      liste& operator[]( int i);
+      liste<T>& operator[]( int i);
 
       // getters
       int getNbMaillon();
-      maillon* getTete();
-      maillon* getFin();
+      maillon<T>* getTete();
+      maillon<T>* getFin();
 
       // setters
       void setNbMaillon(int nb);
-      void setTete(maillon* tete);
-      void setFin(maillon* fin);
+      void setTete(maillon<T>* tete);
+      void setFin(maillon<T>* fin);
 
 };        
 

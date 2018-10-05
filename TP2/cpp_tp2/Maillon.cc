@@ -2,7 +2,7 @@
 
 // constructeur
 maillon::maillon(){}
-maillon::maillon(const maillon& m){
+maillon::maillon(const maillon<T>& m){
 	this->_data=m._data;
 	this->_suivant=m._suivant;
 }
@@ -11,7 +11,7 @@ maillon::maillon(const maillon& m){
 maillon::~maillon(){}
 
 // affectation maillon
-maillon& maillon::operator=(const maillon& m){
+maillon<T>& maillon::operator=(const maillon<T>& m){
 
 }
 
@@ -19,7 +19,7 @@ maillon& maillon::operator=(const maillon& m){
 T maillon::getData(){
 	return _data;
 }
-maillon* maillon::getSuivant(){
+maillon<T>* maillon::getSuivant(){
 	return _suivant;
 }
 
@@ -27,6 +27,6 @@ maillon* maillon::getSuivant(){
 void maillon::setData(T data){
 	_data=data;
 }
-void maillon::setSuivant(maillon* m){
+void maillon::setSuivant(maillon<T>* m){
 	_suivant=m;
 }

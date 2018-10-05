@@ -4,7 +4,7 @@
 
 // constructeur
 liste::liste(){}
-liste::liste(const liste& l){
+liste::liste(const liste<T>& l){
 	this->_tete=l._tete;
 	this->_fin=l._fin;
 	this->nbMaillon=l.nbMaillon;
@@ -14,12 +14,12 @@ liste::liste(const liste& l){
 liste::~liste(){}
 
 // affectation liste
-liste& liste::operator=(const liste& l){
+liste<T>& liste::operator=(const liste<T>& l){
 
 }
 
 // ajout maillon
-liste& liste::operator+(const T& t){
+liste<T>& liste::operator+(const T& t){
 	if (nbMaillon==0)
 	{
 		nbMaillon++;
@@ -27,23 +27,23 @@ liste& liste::operator+(const T& t){
 	}
 	return *this;
 }
-liste& liste::operator+(const maillon& m){
+liste<T>& liste::operator+(const maillon<T>& m){
 	
 }
-liste& liste::operator+(const liste& l){
+liste<T>& liste::operator+(const liste<T>& l){
 	
 }
 
 // suppression maillon
-liste& liste::operator-(const T&t){
+liste<T>& liste::operator-(const T&t){
 
 }
-liste& liste::operator-(int i){
+liste<T>& liste::operator-(int i){
 
 }
 
 // operateur []
-liste& liste::operator[](int i){
+liste<T>& liste::operator[](int i){
 	if (i>=0 && i <this->nbMaillon)
 	{
 		return this[i];
@@ -84,10 +84,10 @@ void liste::affiche() const{
 int liste::getNbMaillon(){
 	return nbMaillon;
 }
-maillon* liste::getTete(){
+maillon<T>* liste::getTete(){
 	return _tete;
 }
-maillon* liste::getFin(){
+maillon<T>* liste::getFin(){
 	return _fin;
 }
 
@@ -95,9 +95,9 @@ maillon* liste::getFin(){
 void liste::setNbMaillon(int nb){
 	nbMaillon = nb;
 }
-void liste::setTete(maillon* tete){
+void liste::setTete(maillon<T>* tete){
 	_tete=tete;
 }
-void liste::setFin(maillon* fin){
+void liste::setFin(maillon<T>* fin){
 	_fin=fin;
 }
